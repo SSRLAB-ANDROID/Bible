@@ -15,10 +15,17 @@ android {
         }
     }
 
-    defaultConfig {
-        dataBinding.enable = true
-        viewBinding.enable = true
+    buildFeatures {
+        dataBinding {
+            enable = true
+        }
 
+        viewBinding {
+            enable = true
+        }
+    }
+
+    defaultConfig {
         applicationId = "by.ssrlab.bible"
         minSdk = 27
         targetSdk = 34
@@ -55,6 +62,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.recyclerview)
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
@@ -68,7 +76,7 @@ dependencies {
 
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
-    implementation(libs.okhttp.bom)
+    implementation(platform(libs.okhttp.bom))
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
