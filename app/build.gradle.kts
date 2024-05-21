@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("com.google.devtools.ksp") version "1.6.21-1.0.6"
+    id("com.google.devtools.ksp")
 }
 
 @Suppress("UnstableApiUsage")
@@ -15,14 +15,12 @@ android {
         }
     }
 
-    buildFeatures {
-        dataBinding {
-            enable = true
-        }
+    dataBinding {
+        enable = true
+    }
 
-        viewBinding {
-            enable = true
-        }
+    viewBinding {
+        enable = true
     }
 
     defaultConfig {
@@ -86,4 +84,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    implementation(libs.koin.android)
+    implementation(libs.koin.android.compat)
 }

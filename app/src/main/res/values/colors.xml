@@ -11,11 +11,13 @@
     <color name="primary_text">#000000</color>
 
     <dimen name="primary_text">16sp</dimen>
+    <dimen name="primary_title">22sp</dimen>
 
     <!-- secondary -->
     <color name="secondary_background">#398710</color>
     <color name="secondary_icon">#FFFFFF</color>
+    <color name="secondary_text">#404040</color>
 
-    <dimen name="secondary_text">22sp</dimen>
+    <dimen name="secondary_text">12sp</dimen>
 
 </resources>
