@@ -1,7 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-    id("com.google.devtools.ksp") version "1.6.21-1.0.6"
+    id("com.google.devtools.ksp")
 }
 
 @Suppress("UnstableApiUsage")
@@ -15,10 +15,15 @@ android {
         }
     }
 
-    defaultConfig {
-        dataBinding.enable = true
-        viewBinding.enable = true
+    dataBinding {
+        enable = true
+    }
 
+    viewBinding {
+        enable = true
+    }
+
+    defaultConfig {
         applicationId = "by.ssrlab.bible"
         minSdk = 27
         targetSdk = 34
@@ -55,6 +60,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.recyclerview)
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
@@ -68,7 +74,7 @@ dependencies {
 
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
-    implementation(libs.okhttp.bom)
+    implementation(platform(libs.okhttp.bom))
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
 
@@ -78,4 +84,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    implementation(libs.koin.android)
+    implementation(libs.koin.android.compat)
 }

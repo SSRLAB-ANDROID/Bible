@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- primary -->
+    <color name="primary_ripple">#CCFF9F9F</color>
+    <color name="primary_background">#ACFF80</color>
+    <color name="primary_icon">#000000</color>
+    <color name="primary_text">#000000</color>
+
+    <dimen name="primary_text">16sp</dimen>
+    <dimen name="primary_title">22sp</dimen>
+
+    <!-- secondary -->
+    <color name="secondary_background">#398710</color>
+    <color name="secondary_icon">#FFFFFF</color>
+    <color name="secondary_text">#404040</color>
+
+    <dimen name="secondary_text">12sp</dimen>
 
 </resources>
