@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import by.ssrlab.bible.MainActivity
 import by.ssrlab.bible.R
 import by.ssrlab.bible.databinding.FragmentListBinding
 import by.ssrlab.bible.utils.ListAdapter
@@ -35,6 +36,7 @@ class ListFragment: Fragment() {
 
         binding.apply {
             viewModel = listVM
+            mainActivity = requireActivity() as MainActivity
             lifecycleOwner = viewLifecycleOwner
 
             initAdapter()
