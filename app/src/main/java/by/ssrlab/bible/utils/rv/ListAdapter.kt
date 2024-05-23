@@ -1,4 +1,4 @@
-package by.ssrlab.bible.utils
+package by.ssrlab.bible.utils.rv
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import by.ssrlab.bible.R
 import by.ssrlab.bible.databinding.RvListItemBinding
 import by.ssrlab.bible.db.objects.book.Book
-import by.ssrlab.bible.utils.ListAdapter.ListHolder
+import by.ssrlab.bible.utils.rv.ListAdapter.ListHolder
 
 class ListAdapter(
     private val entitiesList: ArrayList<Book>,
-    private val moveAction: () -> Unit
+    private val moveAction: (Book) -> Unit
 ): RecyclerView.Adapter<ListHolder>() {
 
     inner class ListHolder(val binding: RvListItemBinding): RecyclerView.ViewHolder(binding.root)
@@ -27,7 +27,7 @@ class ListAdapter(
         holder.binding.executePendingBindings()
 
         holder.binding.rvListRipple.setOnClickListener {
-            moveAction()
+            moveAction(entitiesList[position])
         }
     }
 

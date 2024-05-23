@@ -9,7 +9,7 @@ object RetrofitClient {
 
     private const val BASE_URL = "https://api.scripture.api.bible/v1/"
     private const val HEADER_KEY = "13b3fc242f9824945b73752630ab0945"
-    private const val TIME_OUT = 60L
+    private const val TIME_OUT = 30L
 
     private fun createOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()

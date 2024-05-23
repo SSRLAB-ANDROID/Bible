@@ -4,7 +4,7 @@
     <data>
         <variable
             name="viewModel"
-            type="by.ssrlab.bible.utils.vm.FragmentListVM"/>
+            type="by.ssrlab.bible.utils.vm.ListVM"/>
 
         <variable
             name="mainActivity"
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:src="@drawable/ic_back"
+                android:src="@drawable/ic_home"
                 android:background="@drawable/ripple_ov"
                 android:onClick="@{() -> mainActivity.finish()}"
 

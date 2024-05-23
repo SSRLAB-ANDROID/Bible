@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,13 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.ssrlab.bible.MainActivity
 import by.ssrlab.bible.R
 import by.ssrlab.bible.databinding.FragmentListBinding
-import by.ssrlab.bible.utils.ListAdapter
-import by.ssrlab.bible.utils.vm.FragmentListVM
+import by.ssrlab.bible.db.objects.book.Book
+import by.ssrlab.bible.utils.rv.ListAdapter
+import by.ssrlab.bible.utils.vm.ListVM
 
 class ListFragment: Fragment() {
 
     private lateinit var binding: FragmentListBinding
-    private val listVM: FragmentListVM by viewModels()
+    private val listVM: ListVM by viewModels()
 
     private lateinit var adapter: ListAdapter
 
@@ -44,8 +46,9 @@ class ListFragment: Fragment() {
         }
     }
 
-    private fun moveToAddress() {
-        findNavController().navigate(R.id.list_rv)
+    private fun moveToAddress(book: Book) {
+        val bundle = bundleOf("title" to book.name)
+        findNavController().navigate(R.id.action_listFragment_to_pagesFragment, bundle)
     }
 
     private fun setUpListObserver() {
@@ -58,8 +61,8 @@ class ListFragment: Fragment() {
 
     private fun initAdapter() {
         adapter = listVM.listOfEntities.value?.let {
-            ListAdapter(it) {
-                moveToAddress()
+            ListAdapter(it) { book ->
+                moveToAddress(book)
             }
         }!!
 
