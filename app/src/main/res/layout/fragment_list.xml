@@ -5,6 +5,10 @@
         <variable
             name="viewModel"
             type="by.ssrlab.bible.utils.vm.FragmentListVM"/>
+
+        <variable
+            name="mainActivity"
+            type="by.ssrlab.bible.MainActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,6 +39,7 @@
 
                 android:src="@drawable/ic_back"
                 android:background="@drawable/ripple_ov"
+                android:onClick="@{() -> mainActivity.finish()}"
 
                 android:padding="8dp"
 

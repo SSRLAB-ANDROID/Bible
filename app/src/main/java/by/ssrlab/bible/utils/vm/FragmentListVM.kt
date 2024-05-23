@@ -47,7 +47,7 @@ class FragmentListVM: ViewModel(), KoinComponent {
     }
 
     private fun initTitle() {
-        title.value = "Bible"
+        title.value = "Біблія"
     }
 
     init {

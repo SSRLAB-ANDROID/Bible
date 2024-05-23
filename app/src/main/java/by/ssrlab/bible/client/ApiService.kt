@@ -1,6 +1,5 @@
 package by.ssrlab.bible.client
 
-import by.ssrlab.bible.db.objects.book.Book
 import by.ssrlab.bible.db.objects.book.BookData
 import retrofit2.Call
 import retrofit2.http.GET
