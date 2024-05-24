@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class FragmentListVM: ViewModel(), KoinComponent {
+class ListVM: ViewModel(), KoinComponent {
 
     val listOfEntities = MutableLiveData<ArrayList<Book>>(arrayListOf())
     val title = MutableLiveData<String>()

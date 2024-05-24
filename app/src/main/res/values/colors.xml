@@ -6,7 +6,7 @@
     <color name="logo">#193c64</color>
 
     <!-- primary -->
-    <color name="primary_ripple">#CC8E8E8E</color>
+    <color name="primary_ripple">#66A17C00</color>
     <color name="primary_background">#eee2ca</color>
     <color name="primary_icon">#5E4800</color>
     <color name="primary_text">#393938</color>
