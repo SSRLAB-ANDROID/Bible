@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="by.ssrlab.bible.ui.ListFragment"
+        android:name="by.ssrlab.bible.ui.BiblesFragment"
         android:label="ListFragment">
 
         <action

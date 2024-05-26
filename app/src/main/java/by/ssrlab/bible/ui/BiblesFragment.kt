@@ -12,24 +12,24 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.ssrlab.bible.MainActivity
 import by.ssrlab.bible.R
-import by.ssrlab.bible.databinding.FragmentListBinding
-import by.ssrlab.bible.db.objects.book.Book
-import by.ssrlab.bible.utils.rv.ListAdapter
-import by.ssrlab.bible.utils.vm.ListVM
+import by.ssrlab.bible.databinding.FragmentBiblesBinding
+import by.ssrlab.bible.db.objects.data.Bible
+import by.ssrlab.bible.utils.rv.BiblesAdapter
+import by.ssrlab.bible.utils.vm.BiblesVM
 
-class ListFragment: Fragment() {
+class BiblesFragment: Fragment() {
 
-    private lateinit var binding: FragmentListBinding
-    private val listVM: ListVM by viewModels()
+    private lateinit var binding: FragmentBiblesBinding
+    private val biblesVM: BiblesVM by viewModels()
 
-    private lateinit var adapter: ListAdapter
+    private lateinit var adapter: BiblesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_list, container, false)
+        binding = DataBindingUtil.inflate(layoutInflater, R.layout.fragment_bibles, container, false)
         return binding.root
     }
 
@@ -37,7 +37,7 @@ class ListFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            viewModel = listVM
+            viewModel = biblesVM
             mainActivity = requireActivity() as MainActivity
             lifecycleOwner = viewLifecycleOwner
 
@@ -46,13 +46,13 @@ class ListFragment: Fragment() {
         }
     }
 
-    private fun moveToAddress(book: Book) {
-        val bundle = bundleOf("title" to book.name)
+    private fun moveToAddress(bible: Bible) {
+        val bundle = bundleOf("title" to bible.name)
         findNavController().navigate(R.id.action_listFragment_to_pagesFragment, bundle)
     }
 
     private fun setUpListObserver() {
-        listVM.listOfEntities.apply {
+        biblesVM.listOfEntities.apply {
             observe(viewLifecycleOwner) {
                 adapter.notifyItemInserted(this.value!!.size)
             }
@@ -60,8 +60,8 @@ class ListFragment: Fragment() {
     }
 
     private fun initAdapter() {
-        adapter = listVM.listOfEntities.value?.let {
-            ListAdapter(it) { book ->
+        adapter = biblesVM.listOfEntities.value?.let {
+            BiblesAdapter(it) { book ->
                 moveToAddress(book)
             }
         }!!
