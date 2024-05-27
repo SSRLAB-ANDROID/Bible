@@ -1,4 +1,4 @@
-package by.ssrlab.bible.ui
+package by.ssrlab.bible.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,10 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.ssrlab.bible.R
 import by.ssrlab.bible.databinding.FragmentPagesBinding
+import by.ssrlab.bible.ui.BaseFragmentActions
 import by.ssrlab.bible.utils.TimeReceiver
 import by.ssrlab.bible.utils.vm.PagesVM
 
-class PagesFragment: Fragment() {
+class PagesFragmentActions: Fragment(), BaseFragmentActions {
 
     private lateinit var binding: FragmentPagesBinding
     private lateinit var timeReceiver: TimeReceiver
@@ -44,10 +45,6 @@ class PagesFragment: Fragment() {
         binding.apply {
             viewModel = pagesVM
             lifecycleOwner = viewLifecycleOwner
-
-            listToolbarBack.setOnClickListener {
-                findNavController().popBackStack()
-            }
         }
     }
 
@@ -55,5 +52,9 @@ class PagesFragment: Fragment() {
         super.onDestroy()
 
         timeReceiver.unregister(requireContext())
+    }
+
+    override fun onBackPressed() {
+        findNavController().popBackStack()
     }
 }

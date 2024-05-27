@@ -1,4 +1,4 @@
-package by.ssrlab.bible.ui
+package by.ssrlab.bible.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -59,7 +59,7 @@ class StartFragment: Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             delay(delay)
             if (startVM.moveNext.value!!)
-                findNavController().navigate(R.id.action_startFragment_to_listFragment)
+                findNavController().navigate(R.id.action_startFragment_to_biblesFragment)
         }
     }
 }
