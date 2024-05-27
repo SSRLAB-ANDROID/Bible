@@ -6,12 +6,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import by.ssrlab.bible.R
 import by.ssrlab.bible.databinding.RvListItemBinding
-import by.ssrlab.bible.db.objects.book.Book
-import by.ssrlab.bible.utils.rv.ListAdapter.ListHolder
+import by.ssrlab.bible.db.objects.data.Bible
+import by.ssrlab.bible.utils.rv.BiblesAdapter.ListHolder
 
-class ListAdapter(
-    private val entitiesList: ArrayList<Book>,
-    private val moveAction: (Book) -> Unit
+class BiblesAdapter(
+    private val entitiesList: ArrayList<Bible>,
+    private val moveAction: (Bible) -> Unit
 ): RecyclerView.Adapter<ListHolder>() {
 
     inner class ListHolder(val binding: RvListItemBinding): RecyclerView.ViewHolder(binding.root)

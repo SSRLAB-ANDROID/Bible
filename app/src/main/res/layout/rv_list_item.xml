@@ -3,7 +3,7 @@
     <data>
         <variable
             name="book"
-            type="by.ssrlab.bible.db.objects.book.Book"/>
+            type="by.ssrlab.bible.db.objects.data.Bible"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
