@@ -7,13 +7,13 @@
     app:startDestination="@id/startFragment">
 
     <fragment
-        android:id="@+id/listFragment"
+        android:id="@+id/biblesFragment"
         android:name="by.ssrlab.bible.ui.fragments.BiblesFragment"
         android:label="ListFragment">
 
         <action
-            android:id="@+id/action_biblesFragment_to_pagesFragment"
-            app:destination="@id/pagesFragment"
+            android:id="@+id/action_biblesFragment_to_booksFragment"
+            app:destination="@id/booksFragment"
 
             app:enterAnim="@anim/nav_enter"
             app:exitAnim="@anim/nav_exit"
@@ -29,7 +29,7 @@
 
         <action
             android:id="@+id/action_startFragment_to_biblesFragment"
-            app:destination="@id/listFragment"
+            app:destination="@id/biblesFragment"
 
             app:enterAnim="@anim/nav_enter"
             app:exitAnim="@anim/nav_exit"
@@ -42,8 +42,19 @@
     </fragment>
 
     <fragment
+        android:id="@+id/booksFragment"
+        android:name="by.ssrlab.bible.ui.fragments.BooksFragment"
+        android:label="BooksFragment">
+
+        <argument
+            android:name="bible"
+            app:argType="by.ssrlab.bible.db.objects.data.Bible"/>
+
+    </fragment>
+
+    <fragment
         android:id="@+id/pagesFragment"
-        android:name="by.ssrlab.bible.ui.fragments.PagesFragmentActions"
+        android:name="by.ssrlab.bible.ui.fragments.PagesFragment"
         android:label="PagesFragment"/>
 
 </navigation>

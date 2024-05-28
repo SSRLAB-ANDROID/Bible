@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -47,18 +46,10 @@ class BiblesFragment: Fragment(), BaseFragmentActions {
         }
     }
 
-    private fun setUpListObserver() {
-        biblesVM.listOfEntities.apply {
-            observe(viewLifecycleOwner) {
-                adapter.notifyItemInserted(this.value!!.size)
-            }
-        }
-    }
-
-    private fun initAdapter() {
+    override fun initAdapter() {
         adapter = biblesVM.listOfEntities.value?.let {
             BiblesAdapter(it) { book ->
-                moveNext(book, R.id.action_biblesFragment_to_pagesFragment)
+                moveNext(book)
             }
         }!!
 
@@ -68,16 +59,22 @@ class BiblesFragment: Fragment(), BaseFragmentActions {
         }
     }
 
+    override fun setUpListObserver() {
+        biblesVM.listOfEntities.apply {
+            observe(viewLifecycleOwner) {
+                adapter.notifyItemInserted(this.value!!.size)
+            }
+        }
+    }
+
     override fun onBackPressed() {
         (requireActivity() as MainActivity).finish()
     }
 
-    override fun moveNext(bundle: BaseBibleData?, address: Int?) {
-        var movingPackage = bundleOf()
-        if (bundle != null && bundle is Bible)
-            movingPackage = bundleOf("title" to bundle.name)
+    override fun moveNext(bundle: BaseBibleData?) {
+        val bible = bundle as Bible
 
-        if (address != null)
-            findNavController().navigate(address, movingPackage)
+        val action = BiblesFragmentDirections.actionBiblesFragmentToBooksFragment(bible)
+        findNavController().navigate(action)
     }
 }

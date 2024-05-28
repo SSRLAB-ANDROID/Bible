@@ -23,7 +23,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bibles_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/primary_toolbar_height"
 
             android:background="@color/secondary_background"
             android:elevation="4dp"

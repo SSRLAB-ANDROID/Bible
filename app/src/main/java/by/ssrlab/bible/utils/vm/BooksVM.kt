@@ -12,6 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -40,7 +41,19 @@ class BooksVM(private val bible: Bible): ViewModel(), KoinComponent {
         networkScope.launch {
             try {
                 val response = api.getBooks(bible.id).execute()
-                println(response)
+                if (response.isSuccessful) {
+                    val data = response.body()?.data
+
+                    if (data != null) {
+                        withContext(Dispatchers.Main) {
+                            data.forEach {
+                                val currentList = _listOfEntities.value
+                                currentList?.add(it)
+                                _listOfEntities.value = currentList!!
+                            }
+                        }
+                    }
+                }
             } catch (e: Exception) {
                 Log.e("Retrofit exception", e.message.toString())
             }

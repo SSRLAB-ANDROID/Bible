@@ -12,7 +12,8 @@
     <color name="primary_text">#393938</color>
 
     <dimen name="primary_text">16sp</dimen>
-    <dimen name="primary_title">22sp</dimen>
+    <dimen name="primary_title">20sp</dimen>
+    <dimen name="primary_toolbar_height">60dp</dimen>
 
     <!-- secondary -->
     <color name="secondary_background">#c3bba4</color>

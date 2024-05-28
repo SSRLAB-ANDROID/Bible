@@ -14,7 +14,7 @@ import by.ssrlab.bible.ui.BaseFragmentActions
 import by.ssrlab.bible.utils.TimeReceiver
 import by.ssrlab.bible.utils.vm.PagesVM
 
-class PagesFragmentActions: Fragment(), BaseFragmentActions {
+class PagesFragment: Fragment(), BaseFragmentActions {
 
     private lateinit var binding: FragmentPagesBinding
     private lateinit var timeReceiver: TimeReceiver
