@@ -1,4 +1,4 @@
-package by.ssrlab.bible.ui
+package by.ssrlab.bible.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,11 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import by.ssrlab.bible.MainActivity
 import by.ssrlab.bible.R
 import by.ssrlab.bible.databinding.FragmentBiblesBinding
+import by.ssrlab.bible.db.objects.BaseBibleData
 import by.ssrlab.bible.db.objects.data.Bible
+import by.ssrlab.bible.ui.BaseFragmentActions
 import by.ssrlab.bible.utils.rv.BiblesAdapter
 import by.ssrlab.bible.utils.vm.BiblesVM
 
-class BiblesFragment: Fragment() {
+class BiblesFragment: Fragment(), BaseFragmentActions {
 
     private lateinit var binding: FragmentBiblesBinding
     private val biblesVM: BiblesVM by viewModels()
@@ -38,17 +40,11 @@ class BiblesFragment: Fragment() {
 
         binding.apply {
             viewModel = biblesVM
-            mainActivity = requireActivity() as MainActivity
             lifecycleOwner = viewLifecycleOwner
 
             initAdapter()
             setUpListObserver()
         }
-    }
-
-    private fun moveToAddress(bible: Bible) {
-        val bundle = bundleOf("title" to bible.name)
-        findNavController().navigate(R.id.action_listFragment_to_pagesFragment, bundle)
     }
 
     private fun setUpListObserver() {
@@ -62,13 +58,26 @@ class BiblesFragment: Fragment() {
     private fun initAdapter() {
         adapter = biblesVM.listOfEntities.value?.let {
             BiblesAdapter(it) { book ->
-                moveToAddress(book)
+                moveNext(book, R.id.action_biblesFragment_to_pagesFragment)
             }
         }!!
 
         binding.apply {
-            listRv.layoutManager = LinearLayoutManager(requireContext())
-            listRv.adapter = adapter
+            biblesRv.layoutManager = LinearLayoutManager(requireContext())
+            biblesRv.adapter = adapter
         }
+    }
+
+    override fun onBackPressed() {
+        (requireActivity() as MainActivity).finish()
+    }
+
+    override fun moveNext(bundle: BaseBibleData?, address: Int?) {
+        var movingPackage = bundleOf()
+        if (bundle != null && bundle is Bible)
+            movingPackage = bundleOf("title" to bundle.name)
+
+        if (address != null)
+            findNavController().navigate(address, movingPackage)
     }
 }

@@ -1,5 +1,6 @@
 package by.ssrlab.bible.client
 
+import by.ssrlab.bible.db.objects.DataArrayWrapper
 import by.ssrlab.bible.db.objects.DataWrapper
 import by.ssrlab.bible.db.objects.data.Bible
 import by.ssrlab.bible.db.objects.data.Book
@@ -23,7 +24,7 @@ interface ApiService {
     //Getting all books of a Bible provided in the field, then getting a provided copy of a book id and sending it to the method
     //below to get chapters data
     @GET("bibles/{$BIBLE_ID}/books")
-    fun getBooks(@Path(BIBLE_ID) bibleId: String): Call<DataWrapper<Book>>
+    fun getBooks(@Path(BIBLE_ID) bibleId: String): Call<DataArrayWrapper<Book>>
 
     //Getting an id and names of the chapters provided by the book of a Bible, then sending this id to get all verses of the chapter
     @GET("bibles/{$BIBLE_ID}/books/{$BOOK_ID}/chapters")

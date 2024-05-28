@@ -8,11 +8,11 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="by.ssrlab.bible.ui.BiblesFragment"
+        android:name="by.ssrlab.bible.ui.fragments.BiblesFragment"
         android:label="ListFragment">
 
         <action
-            android:id="@+id/action_listFragment_to_pagesFragment"
+            android:id="@+id/action_biblesFragment_to_pagesFragment"
             app:destination="@id/pagesFragment"
 
             app:enterAnim="@anim/nav_enter"
@@ -24,11 +24,11 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="by.ssrlab.bible.ui.StartFragment"
+        android:name="by.ssrlab.bible.ui.fragments.StartFragment"
         android:label="StartFragment">
 
         <action
-            android:id="@+id/action_startFragment_to_listFragment"
+            android:id="@+id/action_startFragment_to_biblesFragment"
             app:destination="@id/listFragment"
 
             app:enterAnim="@anim/nav_enter"
@@ -43,7 +43,7 @@
 
     <fragment
         android:id="@+id/pagesFragment"
-        android:name="by.ssrlab.bible.ui.PagesFragment"
+        android:name="by.ssrlab.bible.ui.fragments.PagesFragmentActions"
         android:label="PagesFragment"/>
 
 </navigation>
