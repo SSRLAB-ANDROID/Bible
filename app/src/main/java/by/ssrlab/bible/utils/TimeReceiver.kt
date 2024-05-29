@@ -12,10 +12,10 @@ import java.util.Locale
 class TimeReceiver(private val viewModel: PagesVM): BroadcastReceiver() {
 
     fun register(context: Context) {
-        val intentFilter = IntentFilter().apply {
-            addAction(Intent.ACTION_TIME_CHANGED)
-            addAction(Intent.ACTION_TIMEZONE_CHANGED)
-            addAction(Intent.ACTION_TIME_TICK)
+        val intentFilter = IntentFilter().also {
+            it.addAction(Intent.ACTION_TIME_CHANGED)
+            it.addAction(Intent.ACTION_TIMEZONE_CHANGED)
+            it.addAction(Intent.ACTION_TIME_TICK)
         }
 
         context.registerReceiver(this, intentFilter)

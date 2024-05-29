@@ -1,8 +1,11 @@
 package by.ssrlab.bible.db.objects.data
 
+import android.os.Parcelable
 import by.ssrlab.bible.db.objects.BaseBibleData
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Bible(
 
     @SerializedName("id")
@@ -14,4 +17,4 @@ data class Bible(
     @SerializedName("copyright")
     val author: String,
 
-) : BaseBibleData
+) : BaseBibleData, Parcelable
