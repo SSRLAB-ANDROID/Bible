@@ -1,8 +1,11 @@
 package by.ssrlab.bible.db.objects.data
 
+import android.os.Parcelable
 import by.ssrlab.bible.db.objects.BaseBibleData
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class Book(
 
     @SerializedName("id")
@@ -11,4 +14,4 @@ data class Book(
     @SerializedName("nameLong")
     override val name: String
 
-) : BaseBibleData
+) : BaseBibleData, Parcelable

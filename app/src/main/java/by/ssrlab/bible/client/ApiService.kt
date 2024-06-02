@@ -28,7 +28,7 @@ interface ApiService {
 
     //Getting an id and names of the chapters provided by the book of a Bible, then sending this id to get all verses of the chapter
     @GET("bibles/{$BIBLE_ID}/books/{$BOOK_ID}/chapters")
-    fun getChapters(@Path(BIBLE_ID) bibleId: String, @Path(BOOK_ID) bookId: String): Call<DataWrapper<Chapter>>
+    fun getChapters(@Path(BIBLE_ID) bibleId: String, @Path(BOOK_ID) bookId: String): Call<DataArrayWrapper<Chapter>>
 
     //Getting an upper information of all the verses of chapter, like id and name, then sending id to the method below to get
     //content (text) of the verse

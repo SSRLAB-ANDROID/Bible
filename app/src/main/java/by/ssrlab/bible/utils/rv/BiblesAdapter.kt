@@ -10,7 +10,7 @@ import by.ssrlab.bible.db.objects.data.Bible
 import by.ssrlab.bible.utils.rv.BiblesAdapter.ListHolder
 
 class BiblesAdapter(
-    private val entitiesList: ArrayList<Bible>,
+    private val entitiesList: List<Bible>,
     private val moveAction: (Bible) -> Unit
 ): RecyclerView.Adapter<ListHolder>() {
 

@@ -13,6 +13,7 @@ import by.ssrlab.bible.R
 import by.ssrlab.bible.databinding.FragmentBooksBinding
 import by.ssrlab.bible.db.objects.BaseBibleData
 import by.ssrlab.bible.db.objects.data.Bible
+import by.ssrlab.bible.db.objects.data.Book
 import by.ssrlab.bible.ui.BaseFragmentActions
 import by.ssrlab.bible.utils.rv.BooksAdapter
 import by.ssrlab.bible.utils.vm.BooksVM
@@ -56,7 +57,7 @@ class BooksFragment: Fragment(), BaseFragmentActions {
     override fun initAdapter() {
         adapter = booksVM.listOfEntities.value?.let {
             BooksAdapter(it) { book ->
-                moveNext(book)
+                moveNext(listOf(book))
             }
         }!!
 
@@ -74,8 +75,11 @@ class BooksFragment: Fragment(), BaseFragmentActions {
         }
     }
 
-    override fun moveNext(bundle: BaseBibleData?) {
-        super.moveNext(bundle)
+    override fun moveNext(bundle: List<BaseBibleData>?) {
+        val book = bundle?.get(0) as Book
+
+        val action = BooksFragmentDirections.actionBooksFragmentToChaptersFragment(book = book, bible = bible)
+        findNavController().navigate(action)
     }
 
     override fun onBackPressed() {

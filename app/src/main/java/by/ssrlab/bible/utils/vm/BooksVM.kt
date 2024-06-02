@@ -1,22 +1,19 @@
 package by.ssrlab.bible.utils.vm
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import by.ssrlab.bible.client.ApiService
 import by.ssrlab.bible.db.objects.data.Bible
 import by.ssrlab.bible.db.objects.data.Book
+import by.ssrlab.bible.utils.vm.base.BaseVM
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
-class BooksVM(private val bible: Bible): ViewModel(), KoinComponent {
+class BooksVM(private val bible: Bible): BaseVM<Book>() {
 
     class Factory(
         private val bible: Bible
@@ -29,15 +26,13 @@ class BooksVM(private val bible: Bible): ViewModel(), KoinComponent {
     }
 
     private val _listOfEntities = MutableLiveData<ArrayList<Book>>(arrayListOf())
-    val listOfEntities: LiveData<ArrayList<Book>>
+    override val listOfEntities: LiveData<ArrayList<Book>>
         get() = _listOfEntities
 
-    var title = ""
+    override var title = ""
+    override val networkScope = CoroutineScope(Dispatchers.IO + Job())
 
-    private val api: ApiService by inject()
-    private val networkScope = CoroutineScope(Dispatchers.IO + Job())
-
-    private fun downloadList() {
+    override fun downloadList() {
         networkScope.launch {
             try {
                 val response = api.getBooks(bible.id).execute()
@@ -55,7 +50,7 @@ class BooksVM(private val bible: Bible): ViewModel(), KoinComponent {
                     }
                 }
             } catch (e: Exception) {
-                Log.e("Retrofit exception", e.message.toString())
+                logException(e)
             }
         }
     }
