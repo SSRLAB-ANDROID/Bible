@@ -6,31 +6,30 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import by.ssrlab.bible.R
 import by.ssrlab.bible.databinding.RvListItemBinding
-import by.ssrlab.bible.db.objects.data.Book
+import by.ssrlab.bible.db.objects.data.Chapter
 
-class BooksAdapter(
-    private val entitiesList: List<Book>,
-    private val moveAction: (Book) -> Unit
-): RecyclerView.Adapter<BooksAdapter.BooksHolder>() {
+class ChaptersAdapter(
+    private val entitiesList: List<Chapter>,
+): RecyclerView.Adapter<ChaptersAdapter.ChaptersHolder>() {
 
-    inner class BooksHolder(val binding: RvListItemBinding): RecyclerView.ViewHolder(binding.root)
+    inner class ChaptersHolder(val binding: RvListItemBinding): RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BooksHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChaptersHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate<RvListItemBinding>(inflater, R.layout.rv_list_item, parent, false)
-        return BooksHolder(binding)
+        return ChaptersHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: BooksHolder, position: Int) {
+    override fun onBindViewHolder(holder: ChaptersHolder, position: Int) {
         holder.binding.apply {
             listEntity = entitiesList[position]
             executePendingBindings()
 
             rvListRipple.setOnClickListener {
-                moveAction(entitiesList[position])
+//                moveAction(entitiesList[position])
             }
         }
     }
 
-    override fun getItemCount(): Int = entitiesList.size
+    override fun getItemCount() = entitiesList.size
 }

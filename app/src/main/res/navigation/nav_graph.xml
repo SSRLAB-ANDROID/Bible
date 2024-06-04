@@ -50,6 +50,39 @@
             android:name="bible"
             app:argType="by.ssrlab.bible.db.objects.data.Bible"/>
 
+        <action
+            android:id="@+id/action_booksFragment_to_chaptersFragment"
+            app:destination="@id/chaptersFragment"
+
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit"
+            app:popEnterAnim="@anim/nav_pop_enter"
+            app:popExitAnim="@anim/nav_pop_exit"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/chaptersFragment"
+        android:name="by.ssrlab.bible.ui.fragments.ChaptersFragment"
+        android:label="ChaptersFragment" >
+
+        <argument
+            android:name="book"
+            app:argType="by.ssrlab.bible.db.objects.data.Book"/>
+
+        <argument
+            android:name="bible"
+            app:argType="by.ssrlab.bible.db.objects.data.Bible"/>
+
+        <action
+            android:id="@+id/action_chaptersFragment_to_pagesFragment"
+            app:destination="@id/pagesFragment"
+
+            app:enterAnim="@anim/nav_enter"
+            app:exitAnim="@anim/nav_exit"
+            app:popEnterAnim="@anim/nav_pop_enter"
+            app:popExitAnim="@anim/nav_pop_exit"/>
+
     </fragment>
 
     <fragment

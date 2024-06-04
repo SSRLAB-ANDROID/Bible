@@ -38,6 +38,7 @@ class BiblesFragment: Fragment(), BaseFragmentActions {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
+            baseFragment = this@BiblesFragment
             viewModel = biblesVM
             lifecycleOwner = viewLifecycleOwner
 
@@ -49,7 +50,7 @@ class BiblesFragment: Fragment(), BaseFragmentActions {
     override fun initAdapter() {
         adapter = biblesVM.listOfEntities.value?.let {
             BiblesAdapter(it) { book ->
-                moveNext(book)
+                moveNext(listOf(book))
             }
         }!!
 
@@ -67,14 +68,14 @@ class BiblesFragment: Fragment(), BaseFragmentActions {
         }
     }
 
-    override fun onBackPressed() {
-        (requireActivity() as MainActivity).finish()
-    }
-
-    override fun moveNext(bundle: BaseBibleData?) {
-        val bible = bundle as Bible
+    override fun moveNext(bundle: List<BaseBibleData>?) {
+        val bible = bundle?.get(0) as Bible
 
         val action = BiblesFragmentDirections.actionBiblesFragmentToBooksFragment(bible)
         findNavController().navigate(action)
+    }
+
+    override fun onBackPressed() {
+        (requireActivity() as MainActivity).finish()
     }
 }

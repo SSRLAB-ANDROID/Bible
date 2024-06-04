@@ -6,7 +6,7 @@ interface BaseFragmentActions {
 
     fun onBackPressed()
 
-    fun moveNext(bundle: BaseBibleData? = null) {
+    fun moveNext(bundle: List<BaseBibleData>? = null) {
         if (bundle == null) return
     }
 
